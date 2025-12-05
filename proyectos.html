@@ -22,14 +22,19 @@
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
+    <!-- Navegacion JS-->
+    <div id="navbar"></div>
     <main class="flex-shrink-0">
-        <!-- Navegacion JS-->
-        <div id="navbar"></div>
+
         <!-- Seccion de proyectos-->
         <section class="py-5">
             <div class="container px-5 mb-5">
                 <div class="text-center mb-5">
-                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Proyectos</span></h1>
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <h1 class="fw-bolder">Proyectos</h1>
+                    <p class="lead fw-normal text-muted mb-0">Proyectos que he realizado</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
@@ -95,15 +100,6 @@
                 </div>
             </div>
         </section>
-        <!-- Contacto-->
-        <section class="py-5 bg-gradient-primary-to-secondary text-white">
-            <div class="container px-5 my-5">
-                <div class="text-center">
-                    <h2 class="display-4 fw-bolder mb-4"></h2>
-                    <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contacto.html">Contactame</a>
-                </div>
-            </div>
-        </section>
     </main>
     <!-- Footer-->
     <div id="footer"></div>
@@ -112,6 +108,7 @@
     <!-- js-->
     <script src="js/nav.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/animacion.js"></script>
 </body>
 
 </html>
