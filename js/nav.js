@@ -1,30 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetch("components/nav.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar").innerHTML = data;
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("navbar").innerHTML = html;
 
-            const links = document.querySelectorAll("#navbar .nav-link");
+            const navLinks = document.querySelectorAll("#navbar .nav-link");
+            const sections = document.querySelectorAll("section");
 
-            function setActiveLink() {
-                const hash = window.location.hash || "#inicio";
+            let currentSection = null;
 
-                links.forEach(link => {
-                    link.classList.toggle(
-                        "active",
-                        link.getAttribute("href") === hash
-                    );
-                });
-            }
+            const observer = new IntersectionObserver(entries => {
+                const visibleSections = entries
+                    .filter(e => e.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-            // Activar al cargar
-            setActiveLink();
+                if (visibleSections.length > 0) {
+                    const id = visibleSections[0].target.id;
 
-            // Activar al hacer clic
-            links.forEach(link => {
-                link.addEventListener("click", () => {
-                    setTimeout(setActiveLink, 50);
-                });
+                    if (id !== currentSection) {
+                        currentSection = id;
+
+                        navLinks.forEach(link => {
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === `#${id}`
+                            );
+                        });
+                    }
+                }
+            }, {
+                threshold: [0.25, 0.5, 0.75]
             });
+
+            sections.forEach(section => observer.observe(section));
         });
 });
